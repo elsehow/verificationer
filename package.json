@@ -18,5 +18,24 @@
   },
   "dependencies": {
     "halite": "^2.1.2"
-  }
+  },
+  "name": "verificationer",
+  "description": "## install",
+  "version": "1.0.0",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elsehow/verificationer.git"
+  },
+  "keywords": [
+    "verify",
+    "nacl",
+    "hyperlog"
+  ],
+  "bugs": {
+    "url": "https://github.com/elsehow/verificationer/issues"
+  },
+  "homepage": "https://github.com/elsehow/verificationer#readme"
 }
