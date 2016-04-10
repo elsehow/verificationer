@@ -17,11 +17,11 @@
     "tape": "^4.5.1"
   },
   "dependencies": {
-    "halite": "^2.1.2"
+    "real-talk": "^2.0.0"
   },
   "name": "verificationer",
   "description": "## install",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "directories": {
     "test": "test"
   },

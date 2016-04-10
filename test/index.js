@@ -2,7 +2,7 @@ var test = require('tape')
 var Verificationer = require('..')
 
 var hyperlog = require('hyperlog')
-var halite = require('halite')
+var talk = require('real-talk')
 var memdb = require('memdb')
 
 function makeLog() {
@@ -10,25 +10,15 @@ function makeLog() {
     valueEncoding: 'json'
   })
 }
-var sign_kp = halite.signKeypair()
-var pk = halite.pk(sign_kp)
-var sk = halite.sk(sign_kp)
+var sign_kp = talk.signKeypair()
+var pk = sign_kp.publicKey
+var sk = sign_kp.secretKey
 var payload = { move: 'left' }
-
-test('we can sign and verify some object', t => {
-  var veri = Verificationer(makeLog(), node => {
-    //console.log('verified node!', node)
-  })
-  var sig = veri._sign(payload, sk)
-  var ver = veri._verify(sig, pk)
-  t.deepEqual(ver, payload)
-  t.end()
-})
 
 test('we can add / receive some object', t => {
   t.plan(3)
   var veri = Verificationer(makeLog(), node => {
-    t.deepEqual(node.value, payload)
+    t.deepEqual(node.value.body, payload)
   })
   veri.add(null, payload, sign_kp, (err, res) => {
     t.notOk(err)
@@ -39,7 +29,7 @@ test('we can add / receive some object', t => {
 test('we can append / receive some object', t => {
   t.plan(3)
   var veri = Verificationer(makeLog(), node => {
-    t.deepEqual(node.value, payload)
+    t.deepEqual(node.value.body, payload)
   })
   veri.append(payload, sign_kp, (err, res) => {
     t.notOk(err)
